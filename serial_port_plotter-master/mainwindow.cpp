@@ -175,6 +175,8 @@ void MainWindow::setupPlot()
     ui->plot->yAxis->setUpperEnding (QCPLineEnding::esSpikeArrow);
     ui->plot->yAxis->setTickLabelColor (gui_colors[2]);
     ui->plot->yAxis->setTickLabelFont (font);
+    ui->plot->setSelectionRectMode(QCP::SelectionRectMode::srmZoom);
+    ui->plot->setInteractions(QCP::iRangeZoom | QCP::iSelectPlottables| QCP::iMultiSelect);
     /* Range */
     //ui->plot->yAxis->setRange (ui->spinAxesMin->value(), ui->spinAxesMax->value());
     /* User can change Y axis tick step with a spin box */
@@ -577,7 +579,7 @@ void MainWindow::on_mouse_wheel_in_plot (QWheelEvent *event)
   QWheelEvent inverted_event = QWheelEvent(event->posF(), event->globalPosF(),
                                            -event->pixelDelta(), -event->angleDelta(),
                                            0, Qt::Vertical, event->buttons(), event->modifiers());
-  QApplication::sendEvent (ui->spinPoints, &inverted_event);
+ // QApplication::sendEvent (ui->spinPoints, &inverted_event);
 }
 /** ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
